@@ -1,10 +1,10 @@
 <div class="dropdown" (click)="toggleDropdown()" tabindex="0">
     <button class="dropdown-toggle">
-        Table Columns
+        Table Columns <span class="count-background-color">{{ selectedCount }}</span>
     </button>
     <div class="dropdown-menu" [class.show]="dropdownOpen">
         <div class="dropdown-item">
-            <input type="checkbox" class="checkbox-input" (change)="onSelectAll($event)">
+            <input type="checkbox" class="checkbox-input" (change)="onSelectAll($event)" [(ngModel)]="selectAll">
             <span class="checkbox-label">Select All</span>
         </div>
         <div *ngFor="let item of items" class="dropdown-item">
