@@ -8,27 +8,40 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 export class AngularDropdownSelectComponent {
 
   @Input() headings: any;
+  @Input() extras: any;
   @Output() headingsCheckedUpdate = new EventEmitter<{ id: number, checked: boolean }>();
+  @Output() checkBoxCheckedUpdate = new EventEmitter<Boolean>();
 
   dropdownOpen = false;
   items: any;
   selectedCount: number = 0;
-  selectAll: boolean = false; //New
+  selectAll: boolean = false;
+  extra: any;
+  uncheckAllStatus: boolean = false;
 
   constructor(){}
 
   ngOnInit(){
    this.items = this.headings;
+   this.extra = this.extras;
    this.countOfSelectedCheckboxes();
-   this.iterateForSelectAllChecked(); //New
+   this.iterateForSelectAllChecked();
+   this.iterateForSelectAllUnChecked();
   }
 
-  //New
   iterateForSelectAllChecked(){
     this.selectAll = Object.values(this.items).every((item:any) => item.checked === true)
   }
 
-  //New
+  iterateForSelectAllUnChecked(){
+    this.uncheckAllStatus = Object.values(this.headings).every((item:any) => item.checked === false)
+    if(this.uncheckAllStatus === true){
+      this.checkBoxCheckedUpdate.emit(true);
+    }else{
+      this.checkBoxCheckedUpdate.emit(false);
+    }
+  }
+
   countOfSelectedCheckboxes(){
     this.selectedCount = 0;
     this.items.forEach((element: any) => {
@@ -42,21 +55,21 @@ export class AngularDropdownSelectComponent {
 
   onSelectAll(event: Event): void {
     const checkbox = event.target as HTMLInputElement;
-    console.log(checkbox);
     
     this.items.forEach((item:any) => {
       item.checked = checkbox.checked;
-      this.headingsCheckedUpdate.emit({ id: item.id, checked: item.checked }); //New
+      this.headingsCheckedUpdate.emit({ id: item.id, checked: item.checked });
     });
 
-    this.countOfSelectedCheckboxes(); //New
-    this.iterateForSelectAllChecked(); //New
+    this.countOfSelectedCheckboxes();
+    this.iterateForSelectAllChecked();
+    this.iterateForSelectAllUnChecked();
   }
 
   onItemSelected(item: any): void {
-    // item.checked = !item.checked;
-    this.countOfSelectedCheckboxes(); //New
-    this.headingsCheckedUpdate.emit({ id: item.id, checked: !item.checked }); //New
-    this.iterateForSelectAllChecked(); //New
+    this.countOfSelectedCheckboxes();
+    this.headingsCheckedUpdate.emit({ id: item.id, checked: !item.checked });
+    this.iterateForSelectAllChecked();
+    this.iterateForSelectAllUnChecked();
   }
 }
