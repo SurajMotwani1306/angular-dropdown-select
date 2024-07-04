@@ -8,7 +8,9 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "build-library": "ng build angular-dropdown-select",
-    "pack-library": "cd dist/angular-dropdown-select && npm pack"
+    "pack-library": "cd dist/angular-dropdown-select && npm pack",
+    "final": "ng build angular-dropdown-select && cd dist/angular-dropdown-select && npm pack",
+    "publish": "npm publish dist/angular-dropdown-select/angular-dropdown-select-0.0.2.tgz --access public"
   },
   "private": true,
   "dependencies": {

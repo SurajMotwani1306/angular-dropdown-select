@@ -1,0 +1,15 @@
+<div class="dropdown" (click)="toggleDropdown()" tabindex="0">
+    <button class="dropdown-toggle">
+        Table Columns
+    </button>
+    <div class="dropdown-menu" [class.show]="dropdownOpen">
+        <div class="dropdown-item">
+            <input type="checkbox" class="checkbox-input" (change)="onSelectAll($event)">
+            <span class="checkbox-label">Select All</span>
+        </div>
+        <div *ngFor="let item of items" class="dropdown-item">
+            <input type="checkbox" class="checkbox-input" [(ngModel)]="item.checked" (change)="onItemSelected(item)">
+            <span class="checkbox-label">{{ item.name }}</span>
+        </div>
+    </div>
+</div>
