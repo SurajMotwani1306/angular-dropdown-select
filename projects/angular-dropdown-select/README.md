@@ -6,7 +6,7 @@
   <tr>
     <td align="center">
       <img alt="Angular Dropdown Select"
-        src="Screenshots/dropdown-select.gif" />
+        src="projects/angular-dropdown-select/Screenshots/dropdown-select.gif" />
         <p align="center">Instance: A way to bind it with tables.</p>
     </td>
    </tr>
@@ -27,7 +27,12 @@ import { AngularDropdownSelectModule } from 'angular-dropdown-select';
 
 ## Fundamental Usage
 ```html
-<lib-angular-dropdown-select [headings]="headings" [extras]="extras" (headingsCheckedUpdate)="selectedColumnChange($event)" (checkBoxCheckedUpdate)="getStatusOfUnselectedAll($event)"></lib-angular-dropdown-select>
+<lib-angular-dropdown-select 
+      [headings]="headings" 
+      [extras]="extras" 
+      (onCheckBoxStatusChanged)="selectedColumnChange($event)" 
+      (onUnselectAll)="getStatusOfUnselectedAll($event)">
+</lib-angular-dropdown-select>
 ```
 
 # Configuration - Props
@@ -49,18 +54,23 @@ let headings: [
 ],
 
 let extras:{
-      uncheckAllStatus: false
+      uncheckAllStatus: false,
+      dropdownButtonText: 'Title'
 }
 ```
 
 ## Fundamentals / Mandatories
 
-| Property/Method         |  Type   | Description                                                             |
-| ----------------------- | :-----: | ----------------------------------------------------------------------- |
-| headings.id             | number  | IDs of dropdown select items                                            |
-| headings.name           | string  | Names of dropdown select items Or Headings of table shown in example    |
-| headings.checked        | boolean | Status/Visibility of dropdown select                                    |
-| extras.uncheckAllStatus | boolean | Boolean flag to handle all checked/unchecked state                      |
+| Property/Method             |  Type   | Description                                                             |
+| --------------------------- | :-----: | ----------------------------------------------------------------------- |
+| headings.id                 | number  | IDs of dropdown select items                                            |
+| headings.name               | string  | Names of dropdown select items Or Headings of table shown in example    |
+| headings.checked            | boolean | Status/Visibility of dropdown select                                    |
+| extras.uncheckAllStatus     | boolean | Boolean flag to handle all checked/unchecked state                      |
+| extras.dropdownButtonText   | boolean | To update Button text, else default text is 'Table Columns'             |
+| --------------------------- | :-----: | ----------------------------------------------------------------------- |
+| selectedColumnChange(e)     | method  | Recieve emitted value for "onCheckBoxStatusChanged"                     |
+| getStatusOfUnselectedAll(e) | method  | Recieve emitted value for "onUnselectAll"                               |
 
 
 ## Future Plans

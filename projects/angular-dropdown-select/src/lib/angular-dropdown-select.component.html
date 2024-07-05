@@ -1,6 +1,6 @@
 <div class="dropdown" (click)="toggleDropdown()" tabindex="0">
     <button class="dropdown-toggle">
-        Table Columns <span class="count-background-color">{{ selectedCount }}</span>
+        {{ dropdownButtonText }} <span class="count-background-color">{{ selectedCount }}</span>
     </button>
     <div class="dropdown-menu" [class.show]="dropdownOpen">
         <div class="dropdown-item">
