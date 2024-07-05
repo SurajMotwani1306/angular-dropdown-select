@@ -68,7 +68,6 @@ let extras:{
 | headings.checked            | boolean | Status/Visibility of dropdown select                                    |
 | extras.uncheckAllStatus     | boolean | Boolean flag to handle all checked/unchecked state                      |
 | extras.dropdownButtonText   | boolean | To update Button text, else default text is 'Table Columns'             |
-| --------------------------- | :-----: | ----------------------------------------------------------------------- |
 | selectedColumnChange(e)     | method  | Recieve emitted value for "onCheckBoxStatusChanged"                     |
 | getStatusOfUnselectedAll(e) | method  | Recieve emitted value for "onUnselectAll"                               |
 
