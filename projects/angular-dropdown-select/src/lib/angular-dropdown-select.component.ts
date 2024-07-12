@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, HostListener, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'lib-angular-dropdown-select',
@@ -21,6 +21,14 @@ export class AngularDropdownSelectComponent {
   dropdownButtonText : string = '';
 
   constructor(){}
+
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent) {
+    const target = event.target as HTMLElement;    
+    if (!target.nextElementSibling?.classList.contains('show')) {
+      this.dropdownOpen = false;
+    }
+  }
 
   ngOnInit(){
    this.items = this.headings;
@@ -56,12 +64,12 @@ export class AngularDropdownSelectComponent {
     this.dropdownOpen = !this.dropdownOpen;
   }
 
-  onSelectAll(event: Event): void {
+  onSelectAll(event: Event): void {   
     const checkbox = event.target as HTMLInputElement;
     
     this.items.forEach((item:any) => {
       item.checked = checkbox.checked;
-      this.onCheckBoxStatusChanged.emit({ id: item.id, checked: item.checked });
+      this.onCheckBoxStatusChanged.emit(item);
     });
 
     this.countOfSelectedCheckboxes();
@@ -71,7 +79,7 @@ export class AngularDropdownSelectComponent {
 
   onItemSelected(item: any): void {
     this.countOfSelectedCheckboxes();
-    this.onCheckBoxStatusChanged.emit({ id: item.id, checked: !item.checked });
+    this.onCheckBoxStatusChanged.emit(item);
     this.iterateForSelectAllChecked();
     this.iterateForSelectAllUnChecked();
   }
