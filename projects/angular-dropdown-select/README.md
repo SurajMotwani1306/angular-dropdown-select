@@ -45,15 +45,15 @@ import { AngularDropdownSelectModule } from 'angular-dropdown-select';
     console.log(event);
   }
 
-let headings: [
+headings = [
       { id: 1, name: 'id', checked: true },
       { id: 2, name: 'name', checked: true },
       { id: 3, name: 'age', checked: false },
       { id: 4, name: 'email', checked: true },
       { id: 5, name: 'emp_number', checked: true }
-],
+];
 
-let extras:{
+extras = {
       uncheckAllStatus: false,
       dropdownButtonText: 'Title'
 }
