@@ -1,4 +1,4 @@
-# angular-dropdown-select
+# Angular Dropdown Select
 <p>Multiple Dropdown Select - <b>You can use this angular-dropdown-select apart from data tables as well.</b></p>
 <br/>
 
